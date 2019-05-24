@@ -41,8 +41,7 @@ matrix:
       env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7
 
 install:
-  - docker build -t gramaziokohler/rosbridge ./docker
-  - docker run -d -p 9090:9090 --name rosbridge gramaziokohler/rosbridge /bin/bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
+  - docker run -d -p 9090:9090 --name rosbridge gramaziokohler/rosbridge:integration-test /bin/bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
   - docker ps -a
   - pip install -r requirements-dev.txt
 

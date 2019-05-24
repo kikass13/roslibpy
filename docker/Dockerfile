@@ -1,3 +1,6 @@
+# Tag: gramaziokohler/rosbridge:integration-test
+# Build: docker build --rm -t gramaziokohler/rosbridge:integration-test
+
 FROM ros:kinetic
 LABEL maintainer "Gonzalo Casas <casas@arch.ethz.ch>"
 
