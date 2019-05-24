@@ -1,13 +1,35 @@
-dist: xenial
+# Base language is Python, but that does not work on macOs & Windows builds
 language: python
-
-python:
-  - "2.7"
-  - "3.6"
-  - "3.7"
 
 services:
   - docker
+
+matrix:
+  include:
+    - name: "Python 2.7: Windows"
+      os: windows
+      language: shell
+      before_install:
+        - choco install python2 vcredist2008
+        - choco install --ignore-dependencies vcpython27
+      env: TRAVIS_PYTHON_VERSION=2.7 PATH=/c/Python27:/c/Python27/Scripts:$PATH
+    - name: "Python 3.7: Windows"
+      os: windows
+      language: shell
+      before_install: choco install python
+      env: TRAVIS_PYTHON_VERSION=3.7 PATH=/c/Python37:/c/Python37/Scripts:$PATH
+    - name: "Python 2.7: Xenial Linux"
+      python: 2.7
+      dist: xenial
+      env: TRAVIS_PYTHON_VERSION=2.7
+    - name: "Python 3.6: Xenial Linux"
+      python: 3.6
+      dist: xenial
+      env: TRAVIS_PYTHON_VERSION=3.6
+    - name: "Python 3.7: Xenial Linux"
+      python: 3.7
+      dist: xenial
+      env: TRAVIS_PYTHON_VERSION=3.7
 
 before_install:
   - docker build -t gramaziokohler/rosbridge ./docker
