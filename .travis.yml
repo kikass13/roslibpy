@@ -10,14 +10,14 @@ matrix:
       os: windows
       language: shell
       before_install:
-        - DockerCli -SwitchLinuxEngine
+        - $ProgramW6432/Docker/Docker/DockerCli -SwitchLinuxEngine
         - choco install ironpython
       env: PYTHON_IMPL=ironpython PYTHON_VERSION=2.7
     - name: "Python 2.7: Windows"
       os: windows
       language: shell
       before_install:
-        - DockerCli -SwitchLinuxEngine
+        - $ProgramW6432/Docker/Docker/DockerCli -SwitchLinuxEngine
         - choco install python2 vcredist2008
         - choco install --ignore-dependencies vcpython27
         - pip install pypiwin32
@@ -26,7 +26,7 @@ matrix:
       os: windows
       language: shell
       before_install:
-        - DockerCli -SwitchLinuxEngine
+        - $ProgramW6432/Docker/Docker/DockerCli -SwitchLinuxEngine
         - choco install python
         - pip install pypiwin32
       env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7 PATH=/c/Python37:/c/Python37/Scripts:$PATH
