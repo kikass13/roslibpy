@@ -6,6 +6,12 @@ services:
 
 matrix:
   include:
+    - name: "IronPython 2.7: Windows"
+      os: windows
+      language: shell
+      before_install:
+        - choco install ironpython
+      env: PYTHON_IMPL=ironpython PYTHON_VERSION=2.7
     - name: "Python 2.7: Windows"
       os: windows
       language: shell
@@ -13,33 +19,31 @@ matrix:
         - choco install python2 vcredist2008
         - choco install --ignore-dependencies vcpython27
         - pip install pypiwin32
-      env: TRAVIS_PYTHON_VERSION=2.7 PATH=/c/Python27:/c/Python27/Scripts:$PATH
+      env: PYTHON_IMPL=cpython PYTHON_VERSION=2.7 PATH=/c/Python27:/c/Python27/Scripts:$PATH
     - name: "Python 3.7: Windows"
       os: windows
       language: shell
       before_install:
         - choco install python
         - pip install pypiwin32
-      env: TRAVIS_PYTHON_VERSION=3.7 PATH=/c/Python37:/c/Python37/Scripts:$PATH
+      env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7 PATH=/c/Python37:/c/Python37/Scripts:$PATH
     - name: "Python 2.7: Xenial Linux"
       python: 2.7
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=2.7
+      env: PYTHON_IMPL=cpython PYTHON_VERSION=2.7
     - name: "Python 3.6: Xenial Linux"
       python: 3.6
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=3.6
+      env: PYTHON_IMPL=cpython PYTHON_VERSION=3.6
     - name: "Python 3.7: Xenial Linux"
       python: 3.7
       dist: xenial
-      env: TRAVIS_PYTHON_VERSION=3.7
+      env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7
 
-before_install:
+install:
   - docker build -t gramaziokohler/rosbridge ./docker
   - docker run -d -p 9090:9090 --name rosbridge gramaziokohler/rosbridge /bin/bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
   - docker ps -a
-
-install:
   - pip install -r requirements-dev.txt
 
 script:
