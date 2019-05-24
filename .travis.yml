@@ -10,24 +10,24 @@ matrix:
       os: windows
       language: shell
       before_install:
-        -  /c/Progra~1/Docker/Docker/DockerCli -SwitchLinuxEngine
-        - choco install ironpython
+        - choco install docker-cli ironpython
+        - DockerCli -SwitchLinuxEngine
       env: PYTHON_IMPL=ironpython PYTHON_VERSION=2.7
     - name: "Python 2.7: Windows"
       os: windows
       language: shell
       before_install:
-        -  /c/Progra~1/Docker/Docker/DockerCli -SwitchLinuxEngine
-        - choco install python2 vcredist2008
+        - choco install docker-cli python2 vcredist2008
         - choco install --ignore-dependencies vcpython27
+        - DockerCli -SwitchLinuxEngine
         - pip install pypiwin32
       env: PYTHON_IMPL=cpython PYTHON_VERSION=2.7 PATH=/c/Python27:/c/Python27/Scripts:$PATH
     - name: "Python 3.7: Windows"
       os: windows
       language: shell
       before_install:
-        -  /c/Progra~1/Docker/Docker/DockerCli -SwitchLinuxEngine
-        - choco install python
+        - choco install docker-cli python
+        - DockerCli -SwitchLinuxEngine
         - pip install pypiwin32
       env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7 PATH=/c/Python37:/c/Python37/Scripts:$PATH
     - name: "Python 2.7: Xenial Linux"
