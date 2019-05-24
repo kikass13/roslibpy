@@ -10,24 +10,21 @@ matrix:
       os: windows
       language: shell
       before_install:
-        - choco install docker-cli ironpython
-        - DockerCli -SwitchLinuxEngine
+        - choco install ironpython
       env: PYTHON_IMPL=ironpython PYTHON_VERSION=2.7
     - name: "Python 2.7: Windows"
       os: windows
       language: shell
       before_install:
-        - choco install docker-cli python2 vcredist2008
+        - choco install python2 vcredist2008
         - choco install --ignore-dependencies vcpython27
-        - DockerCli -SwitchLinuxEngine
         - pip install pypiwin32
       env: PYTHON_IMPL=cpython PYTHON_VERSION=2.7 PATH=/c/Python27:/c/Python27/Scripts:$PATH
     - name: "Python 3.7: Windows"
       os: windows
       language: shell
       before_install:
-        - choco install docker-cli python
-        - DockerCli -SwitchLinuxEngine
+        - choco install python
         - pip install pypiwin32
       env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7 PATH=/c/Python37:/c/Python37/Scripts:$PATH
     - name: "Python 2.7: Xenial Linux"
@@ -44,7 +41,7 @@ matrix:
       env: PYTHON_IMPL=cpython PYTHON_VERSION=3.7
 
 install:
-  - docker run -d -p 9090:9090 --name rosbridge gramaziokohler/rosbridge:integration-test /bin/bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
+  - docker run --platform linux -d -p 9090:9090 --name rosbridge gramaziokohler/rosbridge:integration-test /bin/bash -c "roslaunch rosbridge_server rosbridge_websocket.launch"
   - docker ps -a
   - pip install -r requirements-dev.txt
 
