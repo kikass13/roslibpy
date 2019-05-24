@@ -43,7 +43,7 @@ install:
   - pip install -r requirements-dev.txt
 
 script:
-  - pytest
+  - python tests/test_param.py
 
 after_script:
   - docker rm -f rosbridge
