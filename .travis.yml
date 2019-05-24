@@ -10,6 +10,7 @@ matrix:
       os: windows
       language: shell
       before_install:
+        - "%ProgramFiles%\Docker\Docker\DockerCli" -Version
         - "%ProgramFiles%\Docker\Docker\DockerCli" -SwitchLinuxEngine
         - choco install ironpython
       env: PYTHON_IMPL=ironpython PYTHON_VERSION=2.7
