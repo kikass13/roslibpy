@@ -6,13 +6,14 @@ import logging
 from .. import Message
 from .. import ServiceResponse
 
+from sts_converter import *
+
 LOGGER = logging.getLogger('roslibpy')
 
 
 class RosBridgeException(Exception):
     """Exception raised on the ROS bridge communication."""
     pass
-
 
 class RosBridgeProtocol(object):
     """Implements the websocket client protocol to encode/decode JSON ROS Bridge messages."""
@@ -34,9 +35,8 @@ class RosBridgeProtocol(object):
         if not handler:
             raise RosBridgeException(
                 'No handler registered for operation "%s"' % message['op'])
-
         handler(message)
-
+        
     def send_ros_message(self, message):
         """Encode and serialize ROS Bridge protocol message.
 
@@ -83,7 +83,8 @@ class RosBridgeProtocol(object):
         self.send_message(json_message)
 
     def _handle_publish(self, message):
-        self.factory.emit(message['topic'], message['msg'])
+        pyobject_msg = JsonConverter(message['msg'])
+        self.factory.emit(message['topic'], pyobject_msg)
 
     def _handle_service_response(self, message):
         request_id = message['id']
