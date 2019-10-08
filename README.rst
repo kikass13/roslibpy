@@ -2,6 +2,19 @@
 roslibpy: ROS Bridge library
 ============================
 
+How to install PROPERLY
+-------------
+
+```
+git clone <this_repo_url> <path>
+```
+```
+pip install -e <path> ### will install from local dir
+```
+
+General
+-------------
+
 .. start-badges
 
 .. image:: https://readthedocs.org/projects/roslibpy/badge/?style=flat
