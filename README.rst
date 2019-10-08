@@ -5,12 +5,15 @@ roslibpy: ROS Bridge library
 How to install PROPERLY
 -------------
 
-```
-git clone <this_repo_url> <path>
-```
-```
-pip install -e <path> ### will install from local dir
-```
+clone this repository::
+
+    git clone <this_repo_url> <path>
+
+install from local sources::
+
+    pip install -e <path> ### will install from local dir
+
+
 
 General
 -------------
