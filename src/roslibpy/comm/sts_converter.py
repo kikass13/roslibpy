@@ -35,7 +35,7 @@ class Attribute(object):
     def __repr__(self):
         return str(self.v)
     def __iter__(self):
-	    return iter(self.v)
+        return iter(self.v)
     def __next__(self):
         next(self.v)
 
