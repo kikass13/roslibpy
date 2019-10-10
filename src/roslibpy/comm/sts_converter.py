@@ -4,13 +4,13 @@
 class ConversionHelper:
     @staticmethod
     def grabAttrs(container):
-	    values = None
-	    if(isinstance(container, dict)):
-	    	values = {}
-	    	for k,v in container.items():
-				newAttr = CrawlerHelper.grabAttr(k, v)
-				values[k] = newAttr
-		return values
+        values = None
+        if(isinstance(container, dict)):
+            values = {}
+            for k,v in container.items():
+                newAttr = CrawlerHelper.grabAttr(k, v)
+                values[k] = newAttr
+	    return values
 
     @staticmethod
     def grabAttr(k, v):
