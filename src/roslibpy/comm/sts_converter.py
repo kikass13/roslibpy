@@ -34,6 +34,11 @@ class Attribute(object):
         self.v = v
     def __repr__(self):
         return str(self.v)
+    def __iter__(self):
+	    return iter(self.v)
+	def __next__(self):
+		next(self.v)
+
 
 class JsonConverter(object):
     def __init__(self, d):
