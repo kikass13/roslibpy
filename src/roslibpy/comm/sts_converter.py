@@ -10,7 +10,7 @@ class ConversionHelper:
             for k,v in container.items():
                 newAttr = CrawlerHelper.grabAttr(k, v)
                 values[k] = newAttr
-	    return values
+        return values
 
     @staticmethod
     def grabAttr(k, v):
