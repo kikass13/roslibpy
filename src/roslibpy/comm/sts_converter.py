@@ -8,7 +8,7 @@ class ConversionHelper:
         if(isinstance(container, dict)):
             values = {}
             for k,v in container.items():
-                newAttr = CrawlerHelper.grabAttr(k, v)
+                newAttr = ConversionHelper.grabAttr(k, v)
                 values[k] = newAttr
         return values
 
@@ -21,7 +21,7 @@ class ConversionHelper:
         elif(isinstance(v, list)):
             tmp = []
             for value in v:
-                tmp.append(CrawlerHelper.grabAttr(None,value))
+                tmp.append(ConversionHelper.grabAttr(None,value))
             attr = AttributeList(k,tmp)
         else:
             attr = Attribute(k,v)
