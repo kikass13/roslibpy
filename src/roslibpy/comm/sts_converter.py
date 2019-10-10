@@ -36,8 +36,8 @@ class Attribute(object):
         return str(self.v)
     def __iter__(self):
 	    return iter(self.v)
-	def __next__(self):
-		next(self.v)
+    def __next__(self):
+        next(self.v)
 
 
 class JsonConverter(object):
