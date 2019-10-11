@@ -22,7 +22,7 @@ class ConversionHelper:
             tmp = []
             for value in v:
                 tmp.append(ConversionHelper.grabAttr(None,value))
-            attr = AttributeList(k,tmp)
+            attr = tmp
         else:
             attr = v
         return attr
@@ -34,10 +34,6 @@ class AttributeHolder(object):
             setattr(self, k,v)
     def __repr__(self):
         return str(self.__dict__)
-
-class AttributeList(list):
-    def __init__(self, k,v):
-        super(AttributeList, self).__init__(v)
 
 class JsonConverter(object):
     def __init__(self, d):
